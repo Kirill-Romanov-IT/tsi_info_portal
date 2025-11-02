@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TSI-IT • Welcome Page</title>
+  <style>
+    :root{
+      --bg: #0b0e14;
+      --panel: #111625;
+      --muted: #8da1b9;
+      --text: #e6edf3;
+      --accent: #7aa2f7;
+      --ok: #22c55e;
+      --warn: #f59e0b;
+      --danger:#ef4444;
+      --border: #20283a;
+      --row: #0f1423;
+      --row-alt:#0d1320;
+      --radius: 14px;
+      --shadow: 0 8px 30px rgba(0,0,0,.35);
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#f6f8fb; --panel:#ffffff; --muted:#6b7280; --text:#0f172a;
+        --accent:#3b82f6; --ok:#16a34a; --warn:#d97706; --danger:#dc2626;
+        --border:#e5e7eb; --row:#ffffff; --row-alt:#fafafa;
+      }
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background:radial-gradient(1200px 600px at 20% -10%, #20304d33, transparent 60%),
+                 radial-gradient(800px 600px at 100% 0%, #364f8033, transparent 60%), var(--bg);
+      color:var(--text);
+    }
+    .wrap{
+      max-width:1100px; margin:24px auto; padding:0 20px;
+    }
+    .hero{
+      background:linear-gradient(180deg, #ffffff05, #00000000), var(--panel);
+      border:1px solid var(--border); border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:20px;
+      display:grid; gap:12px;
+    }
+    .brand{ display:flex; align-items:center; gap:14px; }
+    .logo{
+      width:40px; height:40px; border-radius:12px;
+      display:grid; place-items:center; font-weight:700; font-size:18px;
+      color:#fff; background:linear-gradient(135deg, #3b82f6, #8b5cf6);
+      box-shadow:0 6px 20px #3b82f666;
+      user-select:none;
+    }
+    h1{ margin:0; font-size:22px; letter-spacing:.2px; }
+    p.lead{ margin:0; color:var(--muted); line-height:1.5; font-size: 15px; }
+    .meta{
+      display:flex; gap:10px; flex-wrap:wrap; margin-top:12px
+    }
+    .chip{
+      font-size:12px; padding:6px 10px; border-radius:999px;
+      border:1px solid var(--border); color:var(--muted); background:transparent
+    }
+    .table{
+      margin-top:22px; overflow:hidden;
+    }
+    .table table{ width:100%; border-collapse:separate; border-spacing:0 }
+    .table thead{
+       display: none;
+    }
+    .table tbody td{
+      padding:12px; border-bottom:1px solid var(--border); vertical-align:middle;
+      background:var(--row);
+    }
+    .table tbody tr{
+        display: block;
+        margin-bottom: 16px;
+        border:1px solid var(--border);
+        border-radius:var(--radius);
+        background: var(--panel);
+        box-shadow:var(--shadow);
+    }
+    .table tbody tr:nth-child(even) td{ background:transparent; }
+    .table tbody td{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--border);
+        padding: 12px;
+    }
+    .table tbody td:last-child {
+        border-bottom: 0;
+    }
+    .table td::before {
+      content: attr(data-label);
+      font-weight: bold;
+      margin-right: 16px;
+      color: var(--muted);
+    }
+    .host{
+      display:flex; align-items:center; gap:12px; white-space:nowrap;
+    }
+    .badge{
+      font-size:12px; padding:6px 10px; border-radius:10px; display:inline-flex; gap:8px; align-items:center;
+      border:1px solid var(--border); background:#00000010;
+    }
+    .badge.ok{ color:var(--ok); border-color:color-mix(in oklab, var(--ok), #000 70%) }
+    .badge.warn{ color:var(--warn); border-color:color-mix(in oklab, var(--warn), #000 70%) }
+    .badge.danger{ color:var(--danger); border-color:color-mix(in oklab, var(--danger), #000 70%) }
+    .link{
+      color:var(--accent); text-decoration:none; font-weight:600;
+    }
+    .link:hover{ text-decoration:underline; }
+    .desc{ color:var(--muted) }
+    .nowrap{ white-space:nowrap }
+    .footer{
+      margin-top:16px; color:var(--muted); font-size:12px; text-align:right;
+    }
+    @media (min-width:820px){
+      .wrap{
+        margin:48px auto;
+      }
+      .hero{
+        padding:28px;
+      }
+      h1{ font-size:26px }
+      p.lead { font-size: initial; }
+      .table{
+        border-radius:var(--radius);
+        border:1px solid var(--border); background:var(--panel); box-shadow:var(--shadow);
+      }
+      .table thead{
+        display: table-header-group;
+      }
+      .table thead th{
+        text-align:left; padding:14px 16px; font-size:13px; color:var(--muted);
+        border-bottom:1px solid var(--border); background:linear-gradient(180deg, #ffffff05, transparent);
+        position:sticky; top:0; backdrop-filter:saturate(1.2) blur(4px); z-index:1;
+      }
+      .table tbody tr {
+          display: table-row;
+          margin-bottom: 0;
+          border: none;
+          box-shadow: none;
+      }
+      .table tbody td{
+        display: table-cell;
+        padding:16px; border-bottom:1px solid var(--border); vertical-align:middle;
+        background:var(--row);
+      }
+      .table tbody td:last-child {
+        border-bottom:1px solid var(--border);
+      }
+       .table tbody tr:last-child td {
+        border-bottom: 0;
+      }
+      .table tbody tr:nth-child(even) td{ background:var(--row-alt); }
+       .table td::before {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="brand">
+        <div class="logo">TSI</div>
+        <div>
+          <h1>Добро пожаловать в сеть TSI-IT</h1>
+          <p class="lead">Здесь собраны внутренние сервисы и поддомены. Выберите нужный и переходите по ссылке.</p>
+          <div class="meta">
+            <span class="chip">Домен: <strong>tsi-it.ru</strong></span>
+            <span class="chip">Контур: Prod</span>
+            <span class="chip">Статус: Онлайн</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="table" role="region" aria-label="Сервисы и поддомены">
+        <table>
+          <thead>
+            <tr>
+              <th>Поддомен</th>
+              <th>Сервис</th>
+              <th>Описание</th>
+              <th>Статус</th>
+              <th class="nowrap">Ссылка</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- ▶️ Строка 1 -->
+            <tr>
+              <td data-label="Поддомен">
+                <div class="host">
+                  <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
+                    <circle cx="5" cy="5" r="5" fill="currentColor" style="color: var(--ok)"></circle>
+                  </svg>
+                  <strong>learn.tsi-it.ru</strong>
+                </div>
+              </td>
+              <td data-label="Сервис">BookStack (Wiki)</td>
+              <td data-label="Описание"><span class="desc">Корпоративная база знаний и документации.</span></td>
+              <td data-label="Статус"><span class="badge ">Неактивный</span></td>
+              <td data-label="Ссылка"><a class="link" href="https://learn.tsi-it.ru" target="_blank" rel="noopener">Открыть →</a></td>
+            </tr>
+
+             <!-- ▶️ Строка 2 -->
+            <tr>
+              <td data-label="Поддомен">
+                <div class="host">
+                  <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
+                    <circle cx="5" cy="5" r="5" fill="currentColor" style="color: var(--ok)"></circle>
+                  </svg>
+                  <strong>code.tsi-it.ru</strong>
+                </div>
+              </td>
+              <td data-label="Сервис">Code-server (vs-code)</td>
+              <td data-label="Описание"><span class="desc">Система управления кодом.</span></td>
+              <td data-label="Статус"><span class="badge ok">Активен</span></td>
+              <td data-label="Ссылка"><a class="link" href="https://code.tsi-it.ru" target="_blank" rel="noopener">Открыть →</a></td>
+            </tr>
+
+             <!-- ▶️ Строка 3 -->
+            <tr>
+              <td data-label="Поддомен">
+                <div class="host">
+                  <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
+                    <circle cx="5" cy="5" r="5" fill="currentColor" style="color: var(--ok)"></circle>
+                  </svg>
+                  <strong>proxy.tsi-it.ru</strong>
+                </div>
+              </td>
+              <td data-label="Сервис">Nginx</td>
+              <td data-label="Описание"><span class="desc">Revers-proxy</span></td>
+              <td data-label="Статус"><span class="badge ok">Активен</span></td>
+              <td data-label="Ссылка"><a class="link" href="https://proxy.tsi-it.ru" target="_blank" rel="noopener">Открыть →</a></td>
+            </tr>
+
+            <!-- ▶️ Строка 4 -->
+            <tr>
+              <td data-label="Поддомен">
+                <div class="host">
+                  <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
+                    <circle cx="5" cy="5" r="5" fill="currentColor" style="color: var(--ok)"></circle>
+                  </svg>
+                  <strong>docker.tsi-it.ru</strong>
+                </div>
+              </td>
+              <td data-label="Сервис">Docker manager</td>
+              <td data-label="Описание"><span class="desc">Управление Docker контейнерами</span></td>
+              <td data-label="Статус"><span class="badge ok">Активен</span></td>
+              <td data-label="Ссылка"><a class="link" href="https://docker.tsi-it.ru" target="_blank" rel="noopener">Открыть →</a></td>
+            </tr>
+
+            
+            <!-- ▶️ Строка 5 -->
+            <tr>
+              <td data-label="Поддомен">
+                <div class="host">
+                  <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
+                    <circle cx="5" cy="5" r="5" fill="currentColor" style="color: var(--ok)"></circle>
+                  </svg>
+                  <strong>cloud.tsi-it.ru</strong>
+                </div>
+              </td>
+              <td data-label="Сервис">Nextcloud</td>
+              <td data-label="Описание"><span class="desc">Файловое хранилище</span></td>
+              <td data-label="Статус"><span class="badge ok">Активен</span></td>
+              <td data-label="Ссылка"><a class="link" href="https://cloud.tsi-it.ru" target="_blank" rel="noopener">Открыть →</a></td>
+            </tr>
+
+            <!-- ▶️ Строка 6 -->
+            <tr>
+              <td data-label="Поддомен">
+                <div class="host">
+                  <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
+                    <circle cx="5" cy="5" r="5" fill="currentColor" style="color: var(--ok)"></circle>
+                  </svg>
+                  <strong>jira.tsi-it.ru</strong>
+                </div>
+              </td>
+              <td data-label="Сервис">Jira Software</td>
+              <td data-label="Описание"><span class="desc">Управление проектами</span></td>
+              <td data-label="Статус"><span class="badge">Неактивный</span></td>
+              <td data-label="Ссылка"><a class="link" href="https://jira.tsi-it.ru" target="_blank" rel="noopener">Открыть →</a></td>
+            </tr>
+            
+            <!-- Шаблон для добавления новых строк:
+            <tr>
+              <td data-label="Поддомен"><div class="host"><svg .../><strong>chat.tsi-it.ru</strong></div></td>
+              <td data-label="Сервис">Rocket.Chat</td>
+              <td data-label="Описание"><span class="desc">Внутренние сообщения и каналы.</span></td>
+              <td data-label="Статус"><span class="badge warn">Техработы</span></td>
+              <td data-label="Ссылка"><a class="link" href="https://chat.tsi-it.ru" target="_blank" rel="noopener">Открыть →</a></td>
+            </tr>
+            -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="footer">
+        Обновлено: <span id="updated"></span>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Простой штамп времени (локально у клиента)
+    const el = document.getElementById('updated');
+    if (el){
+      const d = new Date();
+      const fmt = d.toLocaleString('ru-RU', {day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit'});
+      el.textContent = fmt;
+    }
+  </script>
+</body>
+</html>
